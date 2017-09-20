@@ -222,12 +222,17 @@ def StartGUI(camera='Simulation is used'):
     view.addItem(vLine, ignoreBounds=True)
     view.addItem(hLine, ignoreBounds=True)
 
+    def resetbuffer():
+        global databuffer, starttime
+        buffersize = 40000 # Change this number for showing a longer period in time evolution plots
+        databuffer = np.zeros([7,buffersize])
+        databuffer[:,:] = np.nan
+        bufferrange = np.arange(buffersize)
+        databuffer[0,:] = bufferrange
+        starttime = time.time()
+
     # Set up data buffer for time evolution plots
-    buffersize = 40000 # Change this number for showing a longer period in time evolution plots
-    databuffer = np.zeros([7,buffersize])
-    bufferrange = np.arange(buffersize)
-    databuffer[0,:] = bufferrange
-    starttime = time.time()
+    resetbuffer()
 
 
     rotangle = 0
@@ -802,6 +807,8 @@ def StartGUI(camera='Simulation is used'):
         setup()
         
 
+        
+
     analysers = {'None':(None,noneSetup),
                 'Beam profiler': (beamProfilerAnalysis,beamProfilerSetup),
                  'Beam position and power': (beamPositionAnalysis,beamPositionSetup)} 
@@ -833,6 +840,8 @@ def StartGUI(camera='Simulation is used'):
 
     # When the timer is timed out, 'updateview' is called
     viewtimer.timeout.connect(updateview)
+    
+    ui.evplotlabel.clicked.connect(resetbuffer)
     
     # Start the timer: time out after 0 ms
     viewtimer.start(0)

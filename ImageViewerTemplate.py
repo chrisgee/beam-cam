@@ -229,7 +229,7 @@ class Ui_Form(object):
 
 
         '''Defines the heading for the 'time evolution plot' column'''
-        self.evplotlabel = QtGui.QLabel(Form)
+        self.evplotlabel = QtGui.QPushButton(Form)
         self.evplotlabel.setObjectName(_fromUtf8("evplotlabel"))
         self.gridLayout.addWidget(self.evplotlabel, 1, 6, 1, 1)
 
@@ -309,7 +309,7 @@ class Ui_Form(object):
         self.trackCheck.setText(QtGui.QApplication.translate("Form", "Track Beam", None, QtGui.QApplication.UnicodeUTF8))
         self.refCheck.setText(QtGui.QApplication.translate("Form", "Show Reference Beam", None, QtGui.QApplication.UnicodeUTF8))
 
-        self.evplotlabel.setText(QtGui.QApplication.translate("Form", "Time Evolution Plot", None, QtGui.QApplication.UnicodeUTF8))
+        self.evplotlabel.setText(QtGui.QApplication.translate("Form", "reset Time Evolution Plot", None, QtGui.QApplication.UnicodeUTF8))
         self.ampRadio.setText(QtGui.QApplication.translate("Form", "Amplitude", None))
         self.poshorRadio.setText(QtGui.QApplication.translate("Form", "Horizontal position", None))
         self.posvertRadio.setText(QtGui.QApplication.translate("Form", "Vertical position", None))
